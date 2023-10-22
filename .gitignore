@@ -1,0 +1,8 @@
+.env
+mysql/
+*.pyc
+.cache
+db.sqlite3
+staticfiles/
+.venv
+.pipfile

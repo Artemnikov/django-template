@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  server:
+    image: liris_api
+    restart: on-failure
+    ports:
+      - 8000:8000
+    working_dir: /server
+    volumes:
+      - ./static_volume:/usr/src/app/staticfiles
+      - ./media_volume:/usr/src/app/mediafiles
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - apps_network
+    command: python manage.py runserver 0.0.0.0:8000
+
+networks:
+  apps_network:
+    external: true
